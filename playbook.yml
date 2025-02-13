@@ -1,0 +1,28 @@
+- name: Install Docker and Deploy Image
+  hosts: centos
+  become: yes
+  tasks:
+    - name: Install required packages
+      yum:
+        name:
+          - docker
+        state: present
+        update_cache: yes
+
+    - name: Start and enable Docker service
+      systemd:
+        name: docker
+        state: started
+        enabled: yes
+
+    - name: Pull Docker image from Docker Hub
+      docker_image:
+        name: "marwanalanani/python-app-image:latest"
+        source: pull
+
+    - name: Run Docker container
+      docker_container:
+        name: weather-app
+        image: "marwanalanani/python-app-image:latest"
+        state: started
+        restart_policy: always
