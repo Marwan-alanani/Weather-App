@@ -1,3 +1,3 @@
 [centos]
-192.168.56.15 ansible_user=vagrant ansible_private_key_file=./private_keys/m01_private_key
-192.168.56.20 ansible_user=vagrant ansible_private_key_file=./private_keys/m02_private_key
+192.168.56.15 ansible_user=vagrant ansible_private_key_file=/home/marwan/Courses/DevOps/Ansible/.vagrant/machines/m01/virtualbox/private_key
+192.168.56.20 ansible_user=vagrant ansible_private_key_file=/home/marwan/Courses/DevOps/Ansible/.vagrant/machines/m02/virtualbox/private_key
