@@ -2,12 +2,11 @@
   hosts: centos
   become: yes
   tasks:
-    - name: Install required packages
+    - name: Install Docker
       yum:
         name:
           - docker
         state: present
-        update_cache: yes
 
     - name: Start and enable Docker service
       systemd:
