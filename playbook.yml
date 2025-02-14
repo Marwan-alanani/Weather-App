@@ -2,11 +2,28 @@
   hosts: centos
   become: yes
   tasks:
+    - name: Update all packages
+      yum:
+        name: "*"
+        state: latest
+
+     - name: Add Docker repository
+        command: yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
+
     - name: Install Docker
       yum:
         name:
-          - docker
+          - docker-ce
+          - docker-ce-cli
+          - containerd.io
         state: present
+
+    - name: Start and enable Docker service
+      systemd:
+        name: docker
+        state: started
+        enabled: yes
+  
 
     - name: Pull Docker image from Docker Hub
       community.docker.docker_image:
