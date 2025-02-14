@@ -9,7 +9,7 @@
         state: present
 
     - name: Start and enable Docker service
-      systemd:
+      systemctl:
         name: docker
         state: started
         enabled: yes
