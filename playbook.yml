@@ -7,11 +7,13 @@
         name: "*"
         state: latest
 
-     - name: Add Docker repository
-        command: yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
+    - name: Install plugins
+      command: dnf -y install dnf-plugins-core
 
+    - name: Add Docker repository
+      command: dnf config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
     - name: Install Docker
-      yum:
+      dnf:
         name:
           - docker-ce
           - docker-ce-cli
