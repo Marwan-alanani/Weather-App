@@ -34,21 +34,17 @@ pipeline {
         stage('Run ansible playbook'){
             steps{
                 script{
-                    sh 'ansible playbook -i inventory playbook.yml'
+                    sh 'export ANSIBLE_HOST_KEY_CHECKING=False'
+                    sh 'chmod 600 private_keys/m01_private_key'
+                    sh 'chmod 600 private_keys/m02_private_key'
+                    sh 'ansible-playbook -i inventory playbook.yml'
                 }
             }
         }
         
         
-        
 
     }
-
-    post {
-        always {
-            script {
-                sh 'docker ps -a | grep $CONTAINER_NAME'
-            }
-        }
-    }
+    
 }
+
