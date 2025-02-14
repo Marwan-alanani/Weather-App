@@ -8,12 +8,6 @@
           - docker
         state: present
 
-    - name: Start and enable Docker service
-      ansible.builtin.systemd:
-        name: docker
-        state: started
-        enabled: yes
-
     - name: Pull Docker image from Docker Hub
       docker_image:
         name: "marwanalanani/python-app-image:latest"
