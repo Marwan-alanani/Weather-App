@@ -9,7 +9,7 @@
         state: present
 
     - name: Start and enable Docker service
-      systemctl:
+      ansible.builtin.systemd:
         name: docker
         state: started
         enabled: yes
