@@ -3,7 +3,7 @@
 This Weather App is a DevOps project that integrates continuous integration, continuous deployment, containerization, and infrastructure automation. It provides real-time weather information for various locations and is built using Python, JavaScript, HTML, and CSS. The application utilizes the OpenWeatherMap API to fetch current weather data.
 
 ## Virtualization
-![Image](https://github.com/user-attachments/assets/09f33d4d-ad95-49fa-8c44-4b2fd6b00523)
+![Steps](https://github.com/user-attachments/assets/09f33d4d-ad95-49fa-8c44-4b2fd6b00523)
 
 ## Prerequisites
 
@@ -51,12 +51,13 @@ This Weather App is a DevOps project that integrates continuous integration, con
    - Execute the Jenkinsfile to automate the build and deployment process.
 
 ## Contributing
-
 Contributions are welcome! Please fork this repository and submit a pull request for any enhancements or bug fixes.
 
-## License
-
-This project is licensed under the MIT License.
+## Screenshots
+### VM1
+![VM1 Website](https://github.com/user-attachments/assets/9064851c-32e6-4e11-ae66-1029dbb585ef)
+### VM2
+![VM2 Website](https://github.com/user-attachments/assets/5c9f27ae-ce8d-4449-a584-129940a68109)
 
 ## Acknowledgements
 
