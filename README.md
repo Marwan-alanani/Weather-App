@@ -1,34 +1,14 @@
-# Weather App
+# Weather App - A DevOps Project
 
-This Weather App is a web application that provides real-time weather information for various locations. It is built using Python, JavaScript, HTML, and CSS, and utilizes the OpenWeatherMap API to fetch current weather data.
+This Weather App is a DevOps project that integrates continuous integration, continuous deployment, containerization, and infrastructure automation. It provides real-time weather information for various locations and is built using Python, JavaScript, HTML, and CSS. The application utilizes the OpenWeatherMap API to fetch current weather data.
 
-## Features
+## Prerequisites
 
-- **Real-Time Weather Data**: Retrieve up-to-date weather information for any city worldwide.
-- **User-Friendly Interface**: Simple and intuitive design for easy navigation and data interpretation.
+- Two Linux virtual machines
+- Docker installed on both virtual machines
+- Jenkins installed and configured to push to your GitHub repository
 
-## Technologies Used
-
-- **Frontend**: HTML, CSS, JavaScript
-- **Backend**: Python
-- **API**: OpenWeatherMap
-- **Containerization**: Docker
-- **Automation**: Jenkins
-- **Virtualization**: Vagrant
-
-## Getting Started
-
-To run this project locally, follow these steps:
-
-### Prerequisites
-
-- Python installed on your machine
-- Docker installed
-- Vagrant installed
-- Jenkins installed
-- An API key from [OpenWeatherMap](https://openweathermap.org/api)
-
-### Installation
+## Steps to Deploy
 
 1. **Clone the Repository**:
    ```bash
@@ -36,65 +16,37 @@ To run this project locally, follow these steps:
    cd Weather-App
    ```
 
-2. **Set Up Virtual Environment**:
-   ```bash
-   python -m venv env
-   source env/bin/activate  # On Windows, use `env\Scripts\activate`
-   ```
+2. **Insert Your VM Private Keys**:
+   - Place your virtual machine private keys inside the `private_keys/` directory.
 
-3. **Install Dependencies**:
-   ```bash
-   pip install -r requirements.txt
-   ```
+3. **Modify the Inventory File**:
+   - Update the `inventory` file to include your virtual machines' IP addresses.
 
-4. **Configure API Key**:
-   Create a file named `.env` in the project root directory and add your OpenWeatherMap API key:
-   ```
-   API_KEY=your_openweathermap_api_key
-   ```
-
-5. **Run the Application**:
-   ```bash
-   python app.py
-   ```
-   The application should now be running on `http://localhost:5000/`.
-
-## Docker Deployment
-
-To deploy the application using Docker:
-
-1. **Build the Docker Image**:
-   ```bash
-   docker build -t weather-app .
-   ```
-
-2. **Run the Docker Container**:
-   ```bash
-   docker run -d -p 5000:5000 --env-file .env weather-app
-   ```
-   The application will be accessible at `http://localhost:5000/`.
-
-## Vagrant Deployment
-
-To set up the application using Vagrant:
-
-1. **Initialize and Start Vagrant**:
+4. **Run Vagrant**:
    ```bash
    vagrant up
    ```
-   This command will set up a virtual machine and deploy the application.
+   - This will provision the virtual machines and set up the environment.
 
-2. **Access the Application**:
-   Once the setup is complete, the application will be running, and you can access it as directed in the Vagrant output.
+5. **Run Ansible Playbook**:
+   ```bash
+   ansible-playbook -i inventory setup.yml
+   ```
+   - This configures the application, installs dependencies, and deploys the weather app.
 
-## Jenkins Integration
+6. **Verify Docker Containers**:
+   ```bash
+   docker ps
+   ```
+   - Ensure that the application containers are running successfully.
 
-A `Jenkinsfile` is included for CI/CD automation. To set up Jenkins integration:
+7. **Configure Jenkins for CI/CD**:
+   - Set up a Jenkins pipeline to automate the deployment.
+   - Add the repository URL and credentials to Jenkins.
+   - Enable GitHub webhooks to trigger Jenkins builds on code changes.
 
-1. **Install Jenkins**: Follow the official [Jenkins installation guide](https://www.jenkins.io/doc/book/installing/).
-2. **Create a New Pipeline**: In Jenkins, create a new pipeline and configure it to use the repository containing this project.
-3. **Configure Credentials**: Ensure that Jenkins has access to any necessary credentials, including the OpenWeatherMap API key.
-4. **Build the Pipeline**: Run the pipeline to automate the build and deployment process.
+8. **Access the Application**:
+   - The application should now be accessible at `http://<your-vm-ip>:5000/`.
 
 ## Contributing
 
