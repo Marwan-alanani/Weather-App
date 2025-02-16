@@ -7,6 +7,7 @@ This Weather App is a DevOps project that integrates continuous integration, con
 - Two Linux virtual machines
 - Docker installed on both virtual machines
 - Jenkins installed and configured to push to your GitHub repository
+- Ansible installed
 
 ## Steps to Deploy
 
@@ -17,7 +18,7 @@ This Weather App is a DevOps project that integrates continuous integration, con
    ```
 
 2. **Insert Your VM Private Keys**:
-   - Place your virtual machine private keys inside the `private_keys/` directory.
+   - Place your virtual machine private keys inside the `Weather-App/private_keys/` directory.
 
 3. **Modify the Inventory File**:
    - Update the `inventory` file to include your virtual machines' IP addresses.
@@ -28,25 +29,23 @@ This Weather App is a DevOps project that integrates continuous integration, con
    ```
    - This will provision the virtual machines and set up the environment.
 
-5. **Run Ansible Playbook**:
+5. **Confirm Inventory Configuration**:
    ```bash
-   ansible-playbook -i inventory setup.yml
+   ansible -i inventory all -m ping
    ```
-   - This configures the application, installs dependencies, and deploys the weather app.
+   - This ensures Ansible can communicate with the virtual machines.
 
-6. **Verify Docker Containers**:
-   ```bash
-   docker ps
-   ```
-   - Ensure that the application containers are running successfully.
+6. **Configure Jenkins for GitHub Integration**:
+   - Add an SSH key to Jenkins so it can push to your GitHub repository.
 
-7. **Configure Jenkins for CI/CD**:
-   - Set up a Jenkins pipeline to automate the deployment.
-   - Add the repository URL and credentials to Jenkins.
-   - Enable GitHub webhooks to trigger Jenkins builds on code changes.
+7. **Configure Jenkins for DockerHub Integration**:
+   - Grant Jenkins the necessary permissions to push images to your DockerHub repository.
 
-8. **Access the Application**:
-   - The application should now be accessible at `http://<your-vm-ip>:5000/`.
+8. **Modify Ansible Playbook**:
+   - Update the Ansible playbook to push the application image to your DockerHub repository.
+
+9. **Run the Jenkins Pipeline**:
+   - Execute the Jenkinsfile to automate the build and deployment process.
 
 ## Contributing
 
